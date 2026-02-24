@@ -2,25 +2,25 @@ const admin = require("firebase-admin");
 const fs = require("fs");
 const path = require("path");
 
-var serviceAccount = require("path/to/serviceAccountKey.json");
+// var serviceAccount = require("path/to/serviceAccountKey.json");
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://test-scd-panda-c601f-default-rtdb.asia-southeast1.firebasedatabase.app"
-});
-
-// 🔥 ตรวจสอบว่ามี Secret หรือไม่
-// if (!process.env.FIREBASE_SERVICE_ACCOUNT) {
-//   throw new Error("FIREBASE_SERVICE_ACCOUNT not found in environment variables");
-// }
-
-// const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
-
-// // 🔥 ใส่ URL Realtime Database ของคุณให้ถูกต้อง
 // admin.initializeApp({
 //   credential: admin.credential.cert(serviceAccount),
 //   databaseURL: "https://test-scd-panda-c601f-default-rtdb.asia-southeast1.firebasedatabase.app"
 // });
+
+// 🔥 ตรวจสอบว่ามี Secret หรือไม่
+if (!process.env.FIREBASE_SERVICE_ACCOUNT) {
+  throw new Error("FIREBASE_SERVICE_ACCOUNT not found in environment variables");
+}
+
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
+// 🔥 ใส่ URL Realtime Database ของคุณให้ถูกต้อง
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://test-scd-panda-c601f-default-rtdb.asia-southeast1.firebasedatabase.app"
+});
 
 const db = admin.database();
 
