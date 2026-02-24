@@ -2,7 +2,7 @@ name: Firebase Daily Backup
 
 on:
   schedule:
-    - cron: "0 12 * * *"
+    - cron: "5 12 * * *"
   workflow_dispatch:
 
 jobs:
@@ -18,7 +18,7 @@ jobs:
 
       - run: npm install firebase-admin
 
-      - run: node backup.js
+      - run: node backup-test-scdpanda.js
         env:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
 
