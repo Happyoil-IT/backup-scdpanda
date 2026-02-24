@@ -39,7 +39,12 @@ const paths = [
   "order",
   "positions",
   "products",
-  "quotation"
+  "quotation",
+  "report",
+  "tickets",
+  "transfermoney",
+  "trip",
+  "truck"
 ];
 
 // 🔥 ฟังก์ชันสร้างวันที่ตามเวลาไทย
