@@ -1,0 +1,30 @@
+name: Firebase Daily Backup
+
+on:
+  schedule:
+    - cron: "20 12 * * *"   # 19:05 เวลาไทย
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm install firebase-admin
+
+      - run: node backup-test-scdpanda.js
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+
+      - run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add backups-test/
+          git diff --cached --quiet || git commit -m "Daily backup"
+          git push
