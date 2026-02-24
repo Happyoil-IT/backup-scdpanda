@@ -2,7 +2,7 @@ name: Firebase Daily Backup
 
 on:
   schedule:
-    - cron: "0 18 * * *"  # 01:00 น. ไทย (UTC+7)
+    - cron: "0 12 * * *"
   workflow_dispatch:
 
 jobs:
